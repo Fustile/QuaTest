@@ -33,23 +33,19 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   })
 
+  Router.beforeEach((to, from, next) => {
+    const isAuth = !!localStorage.getItem('auth')
 
-Router.beforeEach((to, from, next) => {
-  const isAuth = !!localStorage.getItem('auth')
-
-  if (to.meta.requiresAuth && !isAuth) {
-    next({ name: 'loginMain' })
-  } else if (to.meta.requiresNoAuth && isAuth) {
-    next({ name: 'dashboardMain'})
-  } else if (to.name === 'index' && isAuth) {
-    next({ name: 'dashboardMain' })
-  } else {
-    next ()
-  }  
-
-})
-
-
+    if (to.meta.requiresAuth && !isAuth) {
+      next({ name: 'loginMain' })
+    } else if (to.meta.requiresNoAuth && isAuth) {
+      next({ name: 'dashboardMain' })
+    } else if (to.name === 'index' && isAuth) {
+      next({ name: 'dashboardMain' })
+    } else {
+      next()
+    }
+  })
 
   return Router
 })

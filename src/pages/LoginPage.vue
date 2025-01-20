@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import {useAuthStore} from 'stores/authStore'
+import { useAuthStore } from 'stores/authStore'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -31,9 +31,9 @@ const password = ref('')
 
 async function login() {
   if (email.value && password.value) {
-    if (email.value === 'admin@example.com' && password.value === '123456') {
-        authStore.login()
-        await router.push({name: 'dashboardMain' })
+    if (email.value === authStore.adminEmail && password.value === authStore.adminPass) {
+      authStore.login()
+      await router.push({ name: 'dashboardMain' })
     } else {
       alert('Неверные данные')
     }
@@ -43,6 +43,6 @@ async function login() {
 }
 
 async function goToResetPassword() {
-  await router.push({name: 'resetPasswordMain'})
+  await router.push({ name: 'pasResetMain' })
 }
 </script>

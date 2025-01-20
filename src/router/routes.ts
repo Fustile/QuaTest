@@ -1,11 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-
 const routes: RouteRecordRaw[] = [
   {
-    path: '/', 
+    path: '/',
     name: 'index',
-    redirect: {name: 'loginMain'},
+    redirect: { name: 'loginMain' },
     // component: () => import('layouts/MainLayout.vue'),
     // children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
   },
@@ -15,15 +14,17 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', name: 'loginMain', component: () => import('pages/LoginPage.vue') }],
-    meta: { requiresNoAuth: true }
+    meta: { requiresNoAuth: true },
   },
 
   {
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', name: 'dashboardMain', component: () => import('pages/DashboardPage.vue') }],
-    meta: { requiresAuth: true }
+    children: [
+      { path: '', name: 'dashboardMain', component: () => import('pages/DashboardPage.vue') },
+    ],
+    meta: { requiresAuth: true },
   },
 
   {
@@ -31,9 +32,18 @@ const routes: RouteRecordRaw[] = [
     name: 'report',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', name: 'reportMain', component: () => import('pages/ReportPage.vue') }],
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
 
+  {
+    path: '/pasreset',
+    name: 'pasreset',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', name: 'pasResetMain', component: () => import('pages/PasResetPage.vue') },
+    ],
+    meta: { requiresNoAuth: true },
+  },
 
   {
     path: '/:catchAll(.*)*',

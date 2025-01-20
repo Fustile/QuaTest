@@ -2,18 +2,20 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 
 export const useAuthStore = defineStore('counter', {
   state: () => ({
-    auth: localStorage.getItem('auth') ?true:false,
+    auth: localStorage.getItem('auth') ? true : false,
+    adminEmail: 'admin@example.com',
+    adminPass: '123456',
   }),
 
   actions: {
     login() {
-      this.auth=true
+      this.auth = true
       localStorage.setItem('auth', 'enabled')
     },
     logout() {
-      this.auth=false
+      this.auth = false
       localStorage.removeItem('auth')
-    }
+    },
   },
 })
 
